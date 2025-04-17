@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>KFit - Wellness Club</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <style>
+            body {
+                background-color: #ffffff;
+                color: #4a1e61;
+                font-family: Arial, sans-serif;
+            }
+            .navbar {
+                background-color: #4a1e61;
+            }
+            .navbar-brand, .navbar-nav .nav-link {
+                color: white !important;
+                transition: color 0.3s;
+            }
+            .navbar-nav .nav-link:hover {
+                color: #ff69b4 !important;
+            }
+            .header-section {
+                text-align: center;
+                padding: 40px;
+            }
+            .header-section h1 {
+                color: #4a1e61;
+                font-size: 3.5rem;
+                margin-bottom: 10px;
+            }
+            .header-section p {
+                color: #666;
+                max-width: 700px;
+                margin: 0 auto 30px;
+                font-size: 1.2rem;
+            }
+            .header-section .btn-custom, .header-section .btn-outline-custom {
+                background-color: #4a1e61;
+                color: white;
+                border-radius: 20px;
+                padding: 10px 20px;
+                border: 2px solid #4a1e61;
+            }
+            .header-section .btn-outline-custom {
+                background-color: white;
+                color: #4a1e61;
+            }
+            .main-image {
+                border-radius: 20px;
+                max-width: 85%;
+                height: auto;
+                margin-top: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .bg-custom-footer {
+                background-color: #4a1e61;
+                padding: 40px;
+                color: white;
+                text-align: center;
+                margin-top: 60px;
+            }
+            .logo-img {
+                width: 40px;
+                margin-right: 10px;
+            }
+            .logo-footer {
+                width: 50px;
+                margin-bottom: 20px;
+            }
+            .lang-switch {
+                margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img th:src="@{/img/fauget.png}" alt="Logo" class="logo-img"/> KFit
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" th:href="@{/nutricion-saludable}">Nutrición Saludable</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/ejercicio-efectivo}">Ejercicio Efectivo</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/categoria/listado}">Categorías</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/producto/listado}">Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/cliente/listado}">Clientes</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/usuario/listado}">Usuarios</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/venta/listado}">Ventas</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Más Opciones</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" th:href="@{/blog}">Blog</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/contacto}">Contacto</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="lang-switch">
+                            <select class="form-select form-select-sm" aria-label="Cambiar idioma">
+                                <option value="es" selected>Español</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section class="header-section">
+            <h1>Transforma tu vida con ejercicio y nutrición</h1>
+            <p>En nuestro centro, te ayudamos a alcanzar tus objetivos de salud y bienestar a través de programas personalizados de ejercicios y nutrición. Únete a nosotros y descubre un nuevo estilo de vida más saludable.</p>
+
+            <div style="margin-top: 20px;">
+                <button class="btn btn-custom">Únete</button>
+                <button class="btn btn-outline-custom">Más información</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <img th:src="@{/img/shape%20your%20body%20(1).png}" alt="Shape Your Body" class="main-image"/>
+            </div>
+
+        </section>
+        <section class="reseña-section" style="display: flex; align-items: center; justify-content: center; margin-top: 60px;">
+            <!-- Imagen a la izquierda, reducida -->
+            <div style="flex: 1; text-align: right; margin-right: 30px;">
+                <img th:src="@{/img/kfitbienestar.png}" alt="kfitbienestar" style="width: 200px; border-radius: 20px;"/>
+            </div>
+
+            <!-- Beneficios a la derecha -->
+            <div style="flex: 2;">
+                <p>Nuestros programas están diseñados para ofrecer resultados garantizados y un apoyo profesional constante. Cada plan se adapta a tus necesidades individuales para maximizar tu éxito.</p>
+                <ul>
+                    <li> Resultados garantizados para tu bienestar y salud.</li>
+                    <li> Apoyo profesional en cada paso de tu camino.</li>
+                    <li> Programas personalizados que se adaptan a ti.</li>
+                </ul>
+            </div>
+        </section>
+      <section class="header-section" style="margin-top: 60px;">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; padding: 40px;">
+        
+        <!-- Lado Izquierdo: Título y Botones -->
+        <div style="flex: 1;">
+            <h2 style="color: #4a1e61; font-size: 2.5rem; margin-top: 10px;">Transforma tu salud hoy</h2>
+            <div style="margin-top: 20px;">
+                <button class="btn btn-custom" style="margin-right: 10px;">Inscribirse</button>
+                <button class="btn btn-outline-custom">Descargar</button>
+            </div>
+        </div>
+        
+        <!-- Lado Derecho: Texto -->
+        <div style="flex: 2; text-align: left;">
+            <p style="max-width: 500px; font-size: 1.1rem;">
+                “El bienestar no es un destino, es un viaje constante. Cada entrenamiento, cada elección saludable y cada día con determinación te acercan a tu mejor versión. 
+                Sigue avanzando, tu cuerpo y mente te lo agradecerán.”
+            </p>
+        </div>
+        
+    </div>
+</section>
+
+            </div>
+        </section>
+
+
+        <footer class="bg-custom-footer">
+            <div>
+                <img th:src="@{/img/fauget.png}" alt="Logo" class="logo-img"/>
+                <div class="footer-links">
+                    <a href="#" style="color: #ff69b4;">Inicio Rápido</a> | 
+                    <a href="#" style="color: #ff69b4;">Contáctanos</a> | 
+                    <a href="#" style="color: #ff69b4;">Nuestros Servicios</a> | 
+                    <a href="#" style="color: #ff69b4;">Testimonios</a> | 
+                    <a href="#" style="color: #ff69b4;">Sobre Nosotros</a>
+                </div>
+            </div>
+            <p style="color: #ff69b4;">&copy; KFit - Derechos Reservados 2025</p>
+        </footer>
+
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>

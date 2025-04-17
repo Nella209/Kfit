@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kfit Wellness Club</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 0; }
+        header { background-color: #4CAF50; padding: 10px; text-align: center; color: white; }
+        section { padding: 20px; }
+        .section-title { color: #4CAF50; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kfit Wellness Club</h1>
+</header>
+
+<section>
+    <h2 class="section-title">Categorías</h2>
+    <ul>
+        <!-- Mostrar categorías -->
+        <c:forEach var="categoria" items="${categorias}">
+            <li>${categoria.nombre}</li>
+        </c:forEach>
+    </ul>
+</section>
+
+</body>
+</html>

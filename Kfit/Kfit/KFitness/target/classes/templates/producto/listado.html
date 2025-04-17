@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Productos - KFit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #F2F2F2;
+            color: #333;
+        }
+        .card {
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-header {
+            background-color: #d81b60;
+            color: white;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-agregar {
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-agregar:hover {
+            background-color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Título -->
+        <div class="text-center mb-4">
+            <h1>Listado de Productos Fitness</h1>
+        </div>
+        
+        <!-- Botón para agregar nuevo producto -->
+        <div class="mb-4 text-end">
+            <a class="btn btn-agregar" th:href="@{/producto/nuevo}">Agregar Producto</a>
+        </div>
+        
+        <!-- Listado de Productos -->
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col" th:each="producto : ${productos}">
+                <div class="card h-100">
+                    <img th:src="@{${producto.rutaImagen}}" class="card-img-top" alt="Imagen Producto" height="200"/>
+                    <div class="card-header">[[${producto.nombre}]]</div>
+                    <div class="card-body">
+                        <p><strong>Detalle:</strong> [[${producto.descripcion}]]</p>
+                        <p><strong>Precio:</strong> ₡[[${producto.precio}]]</p>
+                        <p><strong>Existencias:</strong> [[${producto.stock}]]</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a th:href="@{/producto/editar/{id}(id=${producto.idProducto})}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{/producto/eliminar/{id}(id=${producto.idProducto})}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

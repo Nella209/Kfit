@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Productos - KFit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #F2F2F2;
+            color: #333;
+        }
+        .card {
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-header {
+            background-color: #d81b60;
+            color: white;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #d81b60;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- 1. Sección principal para mostrar la información de las categorías -->
+        <section th:fragment="categoriasTabs" id="categorias">
+            <div class="row py-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" 
+                           aria-current="page" 
+                           th:href="@{/kfit/listado}"
+                           >Todos los Productos</a>
+                    </li>
+                    <li th:each="categoria : ${categorias}" class="nav-item">
+                        <a class="nav-link" 
+                           th:href="@{/kfit/listado/}+${categoria.idCategoria}"
+                           >[[${categoria.nombre}]]</a>
+                    </li>                    
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. Sección principal para mostrar la información de los productos -->
+        <section th:fragment="listadoProductos" id="productos">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col" th:each="p : ${productos}">
+                    <div class="card h-100">
+                        <figure>
+                            <img th:src="@{${p.rutaImagen}}" 
+                                 class="card-img-top" alt="Imagen del producto"
+                                 height="200"/>
+                            <figcaption class="text-center mt-2">₡[[${p.precio}]] (Existencias: [[${p.stock}]])</figcaption>
+                        </figure>
+                        <div class="card-header">
+                            <h4 class="card-title">[[${p.nombre}]]</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">[[${p.descripcion}]]</p>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

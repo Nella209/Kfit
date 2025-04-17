@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro de Categoría</title>
+</head>
+<body>
+    <h1>Registro de Categoría</h1>
+    <form action="#" th:action="@{/categoria/guardar}" th:object="${categoria}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required/>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" th:field="*{descripcion}"></textarea>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

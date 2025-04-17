@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KFit - Categorías</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f0e5f9;
+            color: #4a1e61;
+            font-family: Arial, sans-serif;
+        }
+        .btn-primary {
+            background-color: #ff69b4;
+            border-color: #ff69b4;
+        }
+        .btn-primary:hover {
+            background-color: #d63384;
+            border-color: #d63384;
+        }
+        .btn-success {
+            background-color: #8a2be2;
+            border-color: #8a2be2;
+        }
+        .btn-danger {
+            background-color: #c2185b;
+            border-color: #c2185b;
+        }
+        .card-header, .modal-header {
+            background-color: #8a2be2;
+            color: white;
+        }
+        .modal-content {
+            border-radius: 15px;
+        }
+        .table-dark {
+            background-color: #4a1e61;
+            color: white;
+        }
+        .bg-light {
+            background-color: #f0e5f9 !important;
+        }
+        .bg-info {
+            background-color: #8a2be2 !important;
+            color: white;
+        }
+        .bg-custom {
+            background-color: #ff69b4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. Botón de agregar categoría -->
+    <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-custom">
+        <div class="container text-center">
+            <button 
+                type="button" 
+                class="btn btn-primary btn-block" 
+                data-bs-toggle="modal" 
+                data-bs-target="#agregarCategoria">
+                <i class="fas fa-plus"></i> [[#{categoria.agregar}]]
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. Ventana modal para agregar categoría -->
+    <section th:fragment="agregarCategoria">
+        <div id="agregarCategoria" 
+             class="modal fade" 
+             tabindex="-1" 
+             aria-labelledby="exampleModalLabel" 
+             aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> 
+                    <form th:action="@{/categoria/guardar}" th:object="${categoria}"
+                          method="POST" class="was-validated" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="descripcion">[[#{categoria.descripcion}]]</label>
+                                <input type="text" class="form-control" name="descripcion" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="activo">[[#{categoria.activo}]]</label>
+                                <input class="form-check-input" type="checkbox" name="activo"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagen">[[#{categoria.rutaImagen}]]</label>
+                                <input class="form-control" type="file" name="imagenFile"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" type="submit">[[#{accion.guardar}]]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Listado de categorías -->
+    <section th:fragment="listadoCategorias" id="categorias" class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>[[#{categoria.listado}]]</h4>
+            </div>
+            <div th:if="${categorias != null and !categorias.empty}">
+                <table class="table table-striped table-hover mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>[[#{categoria.descripcion}]]</th>
+                            <th>[[#{categoria.activo}]]</th>
+                            <th>[[#{accion.eliminar}]] / [[#{accion.actualizar}]]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="categoria, contador : ${categorias}">
+                            <td>[[${contador.count}]]</td>
+                            <td>[[${categoria.descripcion}]]</td>
+                            <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'"></td>
+                            <td>
+                                <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}" class="btn btn-success">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
+                <span>[[#{lista.vacia}]]</span>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
